@@ -1,0 +1,290 @@
+﻿<krpano version="1.20.6" title="Virtual Tour" logkey="false" showerrors="false">
+<include url="action_html.xml" />
+
+	
+      <!-- <include url="plugins/showtext.xml" /> -->
+    <!-- <include url="plugins/polygonal_hotspots_editor.xml" if="calc(editor)" /> -->
+    <include url="plugins/dragg/dragg.xml"  />
+    <include url="option.xml" />
+    <include url="update.xml" />
+    <include url="skin/vtourskin.xml" />
+    <include url="plugins/popup_blur.xml" />
+    <include url="plugins/youtube_player.xml" />
+    <include url="plugins/showtext.xml" />
+          
+	<include url="add_hotspot/plugins_l/add_hotspot.xml" if="calc(editor)"/>
+    <include url="%FIRSTXML%/add_hotspot/plugins_l/plugin_a/poligon.xml" if="calc(editor)"/>
+	<include url="%FIRSTXML%/add_hotspot/plugins_l/plugin_a/vid_hs.xml" if="calc(editor)"/>
+	<include url="%FIRSTXML%/add_hotspot/plugins_l/plugin_a/sound_hs.xml" if="calc(editor)"/>
+	<include url="%FIRSTXML%/add_hotspot/plugins_l/plugin_a/photo.xml" if="calc(editor)"/>
+	<include url="%FIRSTXML%/add_hotspot/plugins_l/plugin_a/youtube.xml" if="calc(editor)"/>
+    <editor_hs pin="mihailov04@ya.ru" />
+    <!-- <include url="index_skin.xml"/> -->
+    <!-- <include url="index_core.xml"/>
+    <include url="index_messages_en.xml"/> -->
+
+
+	
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+	<skin_settings
+       maps="true"
+       maps_type="google"
+       maps_bing_api_key=""
+       maps_google_api_key=""
+       maps_zoombuttons="false"
+       maps_loadonfirstuse="true"
+       gyro="true"
+       gyro_keeplookingdirection="false"
+       webvr="true"
+       webvr_keeplookingdirection="true"
+       webvr_prev_next_hotspots="true"
+       autotour="false"
+       littleplanetintro="false"
+       followmousecontrol="false"
+       title="true"
+       thumbs="true"
+       thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+       thumbs_opened="false"
+       thumbs_text="false"
+       thumbs_dragging="true"
+       thumbs_onhoverscrolling="false"
+       thumbs_scrollbuttons="false"
+       thumbs_scrollindicator="false"
+       thumbs_loop="false"
+       tooltips_buttons="false"
+       tooltips_thumbs="false"
+       tooltips_hotspots="false"
+       tooltips_mapspots="false"
+       deeplinking="false"
+       loadscene_flags="MERGE"
+       loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+       loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+       loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+       loadingtext="loading..."
+       layout_width="100%"
+       layout_maxwidth="814"
+       controlbar_width="-24"
+       controlbar_height="40"
+       controlbar_offset="20"
+       controlbar_offset_closed="-40"
+       controlbar_overlap.no-fractionalscaling="10"
+       controlbar_overlap.fractionalscaling="0"
+       design_skin_images="vtourskin.png"
+       design_bgcolor="0x2D3E50"
+       design_bgalpha="0.8"
+       design_bgborder="0"
+       design_bgroundedge="1"
+       design_bgshadow="0 4 10 0x000000 0.3"
+       design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+       design_thumbborder_padding="2"
+       design_thumbborder_bgroundedge="0"
+       design_text_css="color:#FFFFFF; font-family:Arial;"
+       design_text_shadow="1"
+
+    />
+
+    <skin_settings
+		devices="mobile|tablet"
+	/>
+
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+    
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+		loadscene(get(startscene), null, MERGE);
+		if(startactions !== null, startactions() );
+  
+         playsound(bgsound, assets/bgsound1.mp3, true, 0.8);
+		set(layer[mapfull].visible,false);
+		set( layer[map2].visible, false);
+        linkscene_title_xml("");  
+       
+        <!-- if(device.panovideosupport == false, error('Sorry, but panoramic videos are not supported by your current browser!'); , loadscene(videopano); ); -->
+       
+		
+	</action>
+	<action name="active_option">
+		set(layer[%1].bgcolor, 0xDF7F2C);
+		set(atH,get(view.hlookat));
+		set(atV,get(view.vlookat));
+		loadscene("%2",null, MERGE);
+		lookat(get(atH),get(atV));
+	</action>
+    <action name="remove_active">
+		set(layer[%1].bgcolor, 0x1F3C22);
+	</action>
+
+	
+    <action name= "showHotSpot">
+		showtext([img src=%1 height=120px width=220px][/img][p style="color="#FF00FF""]%2[/p],Target);
+	</action>
+
+	<scene name="scene_1_benngoaitrangtien" title="1_benngoaitrangtien" onstart="" thumburl="panos/1_benngoaitrangtien.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="1.026" vlookat="-3.970" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/1_benngoaitrangtien.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/1_benngoaitrangtien.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="5.186" atv="1.240" distorted="false" zoom="false" linkedscene="scene_2_truoccuatrangtien" />
+
+	</scene>
+
+	<scene name="scene_2_truoccuatrangtien" title="2_truoccuatrangtien" onstart="" thumburl="panos/2_truoccuatrangtien.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-1.672" vlookat="-7.246" fovtype="MFOV" fov="127.819" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/2_truoccuatrangtien.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/2_truoccuatrangtien.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-84.077" atv="2.146" distorted="false" zoom="false" linkedscene="scene_1_benngoaitrangtien" />
+
+	</scene>
+
+
+
+
+	<scene name="scene_7_benngoaibuudien" title="7_benngoaibuudien" onstart="" thumburl="panos/7_benngoaibuudien.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/7_benngoaibuudien.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/7_benngoaibuudien.tiles/pano_%s.jpg" />
+		</image>
+
+	</scene>
+
+	<scene name="scene_8_truoccuabuudien" title="8_truoccuabuudien" onstart="" thumburl="panos/8_truoccuabuudien.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/8_truoccuabuudien.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/8_truoccuabuudien.tiles/pano_%s.jpg" />
+		</image>
+
+	</scene>
+
+
+
+
+
+
+	<!-- <scene name="scene_11_denngocsonnhinxa" title="11_denngocsonnhinxa" onstart="" thumburl="panos/11_denngocsonnhinxa.tiles/thumb.jpg" lat="-1.#IND0000" lng="-1.#IND0000" heading="0.0">
+
+		<view hlookat="-0.418" vlookat="-1.255" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/11_denngocsonnhinxa.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/11_denngocsonnhinxa.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-5.125" atv="-7.582" distorted="false" zoom="false" linkedscene="scene_17_sandenngocson" />
+		<hotspot name="spot2" style="skin_hotspotstyle_move" ath="39.561" atv="-3.729" distorted="false" zoom="false" linkedscene="scene_12_congvaodenngocson" />
+
+	</scene>
+
+	<scene name="scene_12_congvaodenngocson" title="12_congvaodenngocson" onstart="" thumburl="panos/12_congvaodenngocson.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-12.123" vlookat="-16.816" fovtype="MFOV" fov="127.865" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/12_congvaodenngocson.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/12_congvaodenngocson.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-14.769" atv="18.899" distorted="false" zoom="false" linkedscene="scene_13_congvaodenngocson2" />
+
+	</scene>
+
+	<scene name="scene_13_congvaodenngocson2" title="13_congvaodenngocson2" onstart="" thumburl="panos/13_congvaodenngocson2.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-21.318" vlookat="-9.944" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/13_congvaodenngocson2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/13_congvaodenngocson2.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-5.493" atv="10.177" distorted="false" zoom="false" linkedscene="scene_14_congvaodenngocson3" />
+		<hotspot name="spot2" style="skin_hotspotstyle_move" ath="173.520" atv="19.060" distorted="false" zoom="false" linkedscene="scene_12_congvaodenngocson" />
+
+	</scene>
+
+	<scene name="scene_14_congvaodenngocson3" title="14_congvaodenngocson3" onstart="" thumburl="panos/14_congvaodenngocson3.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-0.568" vlookat="-12.998" fovtype="MFOV" fov="123.999" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/14_congvaodenngocson3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/14_congvaodenngocson3.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-6.617" atv="18.214" distorted="false" zoom="false" linkedscene="scene_15_caudenngocson" />
+		<hotspot name="spot2" style="skin_hotspotstyle_move" ath="177.515" atv="12.428" distorted="false" zoom="false" linkedscene="scene_13_congvaodenngocson2" />
+
+	</scene>
+
+	<scene name="scene_15_caudenngocson" title="15_caudenngocson" onstart="" thumburl="panos/15_caudenngocson.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/15_caudenngocson.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/15_caudenngocson.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="9.426" atv="15.918" distorted="false" zoom="false" linkedscene="scene_16_truoccongden" />
+		<hotspot name="spot2" style="skin_hotspotstyle_move" ath="-171.950" atv="19.454" distorted="false" zoom="false" linkedscene="scene_14_congvaodenngocson3" />
+
+	</scene>
+
+	<scene name="scene_16_truoccongden" title="16_truoccongden" onstart="" thumburl="panos/16_truoccongden.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-2.040" vlookat="-17.892" fovtype="MFOV" fov="140.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/16_truoccongden.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/16_truoccongden.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="-1.476" atv="18.004" distorted="false" zoom="false" linkedscene="scene_17_sandenngocson" />
+		<hotspot name="spot2" style="skin_hotspotstyle_move" ath="-176.929" atv="22.805" distorted="false" zoom="false" linkedscene="scene_15_caudenngocson" />
+
+	</scene>
+
+	<scene name="scene_17_sandenngocson" title="17_sandenngocson" onstart="" thumburl="panos/17_sandenngocson.tiles/thumb.jpg" lat="0.00000000" lng="0.00000000" heading="0.0">
+
+		<view hlookat="-6.483" vlookat="-8.784" fovtype="MFOV" fov="115.833" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/17_sandenngocson.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/17_sandenngocson.tiles/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_move" ath="41.142" atv="10.200" distorted="false" zoom="false" linkedscene="scene_16_truoccongden" />
+
+	</scene> -->
+	
+</krpano>
+

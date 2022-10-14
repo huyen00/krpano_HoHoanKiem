@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Tra Hoa Vang</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<link rel="icon" href="assets/img/favicon.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/owl.theme.default.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/animation.css">
+<link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="assets/css/jquery.pan.css" type="text/css">
+
+	
+	<style>
+		
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
+</head>
+<body>
+
+<script src="tour.js"></script>
+
+<div id="pano" style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+<div class="language">
+	<li class="item_language" id="language_vn">
+		<img src="assets/img/vn.png" alt="">
+	</li>
+	<li class="item_language" id="language_en">
+		<img src="assets/img/en.png" alt="">
+	</li>
+</div>
+
+<div class="icon_menu">
+	<i class="fa-solid fa-bars"></i>
+</div>
+
+<div class="menu_icon_slidebar">
+	<ul class="list_slidebar">
+		<li class="item_slidebar" id="icon_info" onclick="show_info()">
+			<span class="title_slidebar" ><i class="fas fa-info-circle icon_slidebar"></i> Thông Tin </span>
+		</li>
+		<li class="item_slidebar" id="icon_map" onclick="show_map()" >
+			<span class="title_slidebar" ><i class="fas fa-map-marker-alt icon_slidebar"></i> Bản Đồ</span>
+		</li>
+		<li class="item_slidebar" id="icon_contact" onclick="show_contact()">
+			<span class="title_slidebar"><i class="fas fa-address-book icon_slidebar"></i> Liên Hệ </span>
+		</li>
+		<li class="item_slidebar" id="hotspot_Close" >
+			<span class="title_slidebar"><i class="fas fa-toggle-on icon_slidebar"></i> Ẩn icon</span>
+		</li>
+		<li class="item_slidebar" id="hotspot_open">
+			<span class="title_slidebar"><i class="fas fa-toggle-off icon_slidebar"></i> Hiện icon</span>
+		</li>
+	</ul>
+</div>
+
+<div class="menu_bottom">
+	<div class="list_menu_bottom">
+		<div class="sub_menu_left">
+			<li class="icon_menu_bottom" id="prev_scene" aria-label="Quay lại" data-balloon-pos="up">
+				<i class="fa-solid fa-backward"></i>
+			</li>
+			<li class="icon_menu_bottom" id="show_thumbs" aria-label="Thumbs" data-balloon-pos="up">
+				<i class="fas fa-th-large"></i>
+			</li>
+		</div>
+		<div class="sub_menu_center">
+			<li class="icon_menu_bottom" id="icon_btn_left" aria-label="Left" data-balloon-pos="up">
+				<i class="fas fa-arrow-circle-left"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_btn_right" aria-label="Right" data-balloon-pos="up">
+				<i class="fas fa-arrow-circle-right"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_btn_up" aria-label="Up" data-balloon-pos="up">
+				<i class="fas fa-arrow-circle-up"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_btn_down" aria-label="Down" data-balloon-pos="up">
+				<i class="fas fa-arrow-circle-down"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_btn_zoomin" aria-label="Zoom in" data-balloon-pos="up">
+				<i class="fas fa-plus-circle"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_btn_zoomout" aria-label="zoom out" data-balloon-pos="up">
+				<i class="fas fa-minus-circle"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_mute" aria-label="Tắt âm thanh" data-balloon-pos="up">
+				<i class="fas fa-volume-off"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_unmute" aria-label="Mở âm thanh" data-balloon-pos="up">
+				<i class="fas fa-volume-mute"></i>
+			</li>
+			
+			<li class="icon_menu_bottom" id="icon_rotate" aria-label="Tắt xoay" data-balloon-pos="up">
+				<i class="fa-solid fa-rotate-right"></i>
+			</li>
+			<li class="icon_menu_bottom" id="icon_unrotate" aria-label="Mở xoay" data-balloon-pos="up">
+				<i class="fa-solid fa-clock-rotate-left"></i>
+			</li>
+
+			<li class="icon_menu_bottom" id="icon_VR" aria-label="VR" data-balloon-pos="up">
+				<i class="fas fa-vr-cardboard"></i>
+			</li>
+			<li class="icon_menu_bottom" id="" aria-label="Mở xoay" data-balloon-pos="up">
+				<i class="fas fa-share-alt"></i>
+			</li>
+			
+		</div>
+		<div class="sub_menu_right">
+			<li class="icon_menu_bottom" id="icon_fullscreen" onclick="toggleFullscreen()" aria-label="Full màn hình" data-balloon-pos="up">
+				<i class="fa-solid fa-expand"></i>
+			</li>
+			<li class="icon_menu_bottom" id="next_scene" aria-label="Đi tiếp" data-balloon-pos="up" >
+				<i class="fa-solid fa-forward"></i>
+			</li>
+		</div>
+	</div>
+</div>
+
+<div class="menu_bottom_thumb" id="thumb">
+	<div class="owl-carousel owl-theme list_thumb">
+		<div class="item active " id="scene_1_flycam1">
+			<img src="panos/1_flycam1.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb ">
+				<span class="title-thumb">Toàn cảnh khu sản xuất </span>
+			</div>
+			
+		</div>
+		
+		<div class="item "  id="scene_15_nguyenlieua1" >
+			<img src="panos/15_nguyenlieua1.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Nguyên liệu A1</span>
+			</div>
+		</div>
+		<div class="item" id="scene_2_nguyenlieua2">
+			<img src="panos/2_nguyenlieua2.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Nguyên liệu A2</span>
+			</div>
+		</div>
+		<div class="item" id="scene_3_nguyenlieua4">
+			<img src="panos/3_nguyenlieua4.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Nguyên liệu A3</span>
+			</div>
+		</div>
+		<div class="item" id="scene_13_khunguyenlieub1">
+			<img src="panos/13_khunguyenlieub1.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Nguyên liệu B1</span>
+			</div>
+		</div>
+		<div class="item" id="scene_4_nguyenlieub6">
+			<img src="panos/4_nguyenlieub6.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Nguyên liệu B2</span>
+			</div>
+		</div>
+		
+		<div class="item" id="scene_5_khusxcayduoclieu">
+			<img src="panos/5_khusxcayduoclieu.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Khu nhà trưng bày</span>
+			</div>
+		</div>
+		<div class="item" id="scene_6_traloai1">
+			<img src="panos/6_traloai1.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Khu trưng bày dược liệu</span>
+			</div>
+		</div>
+		<div class="item" id="scene_7_traloai2">
+			<img src="panos/7_traloai2.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Trà loại 2</span>
+			</div>
+		</div>
+		<div class="item" id="scene_14_traloai3">
+			<img src="panos/14_traloai3.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Trà loại 3</span>
+			</div>
+		</div>
+		<div class="item" id="scene_8_duoclieukhac">
+			<img src="panos/8_duoclieukhac.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Dược liệu khác</span>
+			</div>
+		</div>
+		<div class="item" id="scene_9_bantiepkhach">
+			<img src="panos/9_bantiepkhach.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Bàn tiếp khách</span>
+			</div>
+		</div>
+		<div class="item" id="scene_10_kho">
+			<img src="panos/10_kho.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Khu xưởng sấy</span>
+			</div>
+		</div>
+		
+		
+		<div class="item" id="scene_11_vuonuom1">
+			<img src="panos/11_vuonuom1.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Vườn ươm 01</span>
+			</div>
+		</div>
+		<div class="item" id="scene_12_vuonuom2">
+			<img src="panos/12_vuonuom2.tiles/thumb.jpg" class="img_thumb" alt="">
+			<div class="content-thumb">
+				<span class="title-thumb">Vườn ươm 02</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- form info -->
+<div class="info" id="info">
+	<span class="button_close" id="close_general" onclick="close_form()">
+		<i class="fas fa-times"></i>
+	</span>
+	<div class="form_info">
+		<div class="title_info">
+			<h5 id="title_info" ></h5>
+		</div>
+		<hr class="line">
+		<div class="content_info">
+			<div class="text_content_info" id="text_content_info">
+				
+			</div>
+		</div>
+		<div class="footer_info">
+			<div class="footer_icon" id="footer_voice">
+				<i class="fa-solid fa-play icon_play"></i>
+				<i class="fa-solid fa-pause icon_pause "></i>
+
+				Nghe
+			</div>
+			<div class="footer_icon" onclick="show_image()" id="footer_image">
+				Hình ảnh
+				<i class="fa-solid fa-image icon_image"></i>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- image -->
+	<div class="image" id="image">
+		<span class="button_close" id="close_general" onclick="close_image()">
+			<i class="fas fa-times"></i>
+		</span>
+		<div class="form_image">
+			<div class="row list_image">
+				<div class="item_image">
+					<img src="panos/1_flycam1.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Toàn cảnh 01</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/15_nguyenlieua1.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nguyên liệu A1</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/2_nguyenlieua2.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nguyên liệu A2</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/3_nguyenlieua4.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nguyên liệu A3</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/13_khunguyenlieub1.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nguyên liệu B1</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/4_nguyenlieub6.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nguyên liệu B2</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/5_khusxcayduoclieu.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu nhà trưng bày</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/6_traloai1.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>Khu trưng bày dược liệu</span>
+					</div>
+				</div>
+				<div class="item_image">
+					<img src="panos/7_traloai2.tiles/thumb.jpg" class="img-fluid img_album" alt="">
+					<div class="title_image">
+						<span>khu trưng bày trà Loại 2</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- map -->
+<div class="map" id="map">
+	<span class="button_close" id="close_general" onclick="close_form()">
+		<i class="fas fa-times"></i>
+	</span>
+	<div class="form_map">
+		<iframe src="map.html" class="iframe_map" frameborder="0"></iframe>
+	</div>
+</div>
+<!-- contact -->
+<div class="contact" id="contact">
+	<div class="form_contact">
+		<h3 class="title_contact">Liên Hệ </h3>
+		<form id="contact-form" >   
+			<input type="hidden" name="_token" value="2d7EP09QskNLTOighldVx0TZxQ3ae1iotrMIeMfq">       
+			<div class="form-group ">
+				<input type="text" name="name" id="name" class="form-control" placeholder="Tên ">
+			</div>   
+			<div class="form-group ">
+				<input type="text" name="email" id="phone" class="form-control" placeholder="Địa chỉ email">
+			</div>   
+			<div class="form-group ">
+				<input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại">
+			</div>                        
+			<div class="form-group ">
+				<textarea class="form-control" name="message" id="message" placeholder="Tin nhắn..." rows="3" cols="4"></textarea>
+			</div>  
+			<div style="text-align:center">
+				<button type="submit" class=" btn-sub text-uppercase">Gửi cho chúng tôi</button>      
+			</div> 				  
+		</form>
+	</div>
+	<span class="button_close" id="close_general" onclick="close_form()">
+		<i class="fas fa-times"></i>
+	</span>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+<script src="assets/js/jquery.pan.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+
+
+<script src="assets/js/responsive.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+
+</body>
+</html>
